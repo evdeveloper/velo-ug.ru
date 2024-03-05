@@ -1,0 +1,158 @@
+
+{#
+   Способ авторизации настраивается в административной части Расширения->Расширения->Вход и регистрация по телефону (sms.ru) | (Модули->Модули->Вход и регистрация по телефону (sms.ru))
+   The authorization method is configured in the administrative part Extensions->Extensions->Login and registration by phone (sms.ru) | (Modules->Modules->Login and registration by phone (sms.ru))
+   $method = 1 - Авторизация по смс + временный код | Authorization by SMS + temporary code
+   $method = 2 - Авторизация по смс + постоянный пароль | SMS authorization + permanent password
+   $method = 3 - Авторизация по звонку | Call authorization
+#}
+{% if method != 2 %}
+
+    
+	<main class="main-authorization">
+        <div class="breadcrumbs _container"> 
+          <div class="breadcrumbs__list">  
+            <a class="breadcrumbs__link" href="/">Главная</a><span>Авторизация</span></div>
+        </div>
+        <div class="authorization _container">
+          <h2 class="authorization__title">Войти или создать профиль</h2>
+          <form class="form authorization__form" action="" novalidate>
+            <div id="login_phone_form">
+			<div class="form__item">
+              <input class="form__input form__phone tel" id="send_telephone" name="telephone" value="" placeholder="" class="form-control masked" data-mask="{{phone_mask}}" autocomplete="off" required>
+              <label class="form__label tel" for="send_telephone">Телефон <span>*</span></label>
+            </div>
+			      <div style="display: none;" class="alert alert-danger"></div>
+            <input class="btn-default authorization__submit w-full" type="submit" id="get_code" type="button" disabled="disabled" value="Получить код">
+			</div>
+			<div id="login_code_form" style="display: none;">
+			<div class="form__item">
+				<p id="result_telephone"></p>
+				    <div class="form__item">
+						<input class="form__input form__phone tel" id="sms_code" name="code" value="" placeholder="XXXX" class="form-control masked" data-mask="0000" autocomplete="off" required>
+						<label class="form__label tel" for="sms_code">{{entry_code}}<span>*</span></label>
+					</div>
+				<button class="btn btn-link" type="button" id="sms_result"  disabled="disabled" style="display: none;" data-text="{{entry_repeat}}" data-load-text="{{entry_send_again}}"></button>
+            <br>
+            <div style="display: none;" class="alert alert-danger"></div>
+            <button class="btn btn-primary" id="send_code" type="button" disabled="disabled">{{entry_sendcode}}</button>
+            <br>
+            <button class="btn btn-link" type="button" id="back_form">{{entry_back}}</button>
+			</div></div>
+            <div class="consent">Нажимая на кнопку, вы соглашетесь с <a href="">Условиями обработки персональных данных</a></div>
+          </form>
+        </div>
+      </main>
+	
+	
+	
+	
+	
+	
+	
+	
+        <script>
+            document.addEventListener("DOMContentLoaded", function (){
+                //Все поля обязательные
+                //All fields are required
+                var sms = new smsSender({
+                    loginPhoneForm : '#login_phone_form',
+                    loginCodeForm : '#login_code_form',
+                    maskPhone : '#send_telephone',
+                    maskCode : '#sms_code',
+                    resultPhone : '#result_telephone',
+                    smsRepeat : '#sms_result',
+                    errorPhone : '#login_phone_form .alert-danger',
+                    errorCode : '#login_code_form .alert-danger',
+                    getCodeButton : '#get_code',
+                    sendCodeButton : '#send_code',
+                    smsMethod : {{method}}
+                });
+                get_code.addEventListener('click',()=>sms.codeSend());
+                sms_result.addEventListener('click',()=>sms.codeSend());
+                send_code.addEventListener('click',()=>sms.login());
+                back_form.addEventListener('click',()=>sms.back());
+            });
+        </script>
+   
+{% else %}
+    
+	
+	<main class="main-authorization">
+        <div class="breadcrumbs _container"> 
+          <div class="breadcrumbs__list">  <a class="breadcrumbs__link" href="index.html">Главная</a><span>Авторизация</span></div>
+        </div>
+        <div class="authorization _container">
+          <h2 class="authorization__title">Войти или создать профиль</h2>
+          <form class="form authorization__form" action="" novalidate>
+            <div class="form__item">
+              <input class="form__input form__phone tel" type="tel" id="send_telephone" value="" placeholder="{{placeholder}}" class="form-control masked" data-mask="{{phone_mask}}" autocomplete="off" required>
+              <label class="form__label tel" for="send_telephone">Телефон <span>*</span></label>
+            </div>
+            <input class="btn-default authorization__submit" type="submit" value="Получить код">
+            <div class="consent">Нажимая на кнопку, вы соглашетесь с <a href="">Условиями обработки персональных данных</a></div>
+          </form>
+        </div>
+      </main>
+      <script src="js/mask.js"></script>
+	
+	
+	
+	<div class="well">
+        <h2>{{heading_title}}</h2>
+        <div id="login_phone_form">
+            <div class="form-group">
+                <label class="control-label" for="send_telephone">{{entry_telephone}}</label>
+                <input type="tel" id="send_telephone" value="" placeholder="{{placeholder}}" class="form-control masked" data-mask="{{phone_mask}}" autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="send_password">{{entry_password}}</label>
+                <input type="password" id="send_password" name="password" value="" class="form-control" autocomplete="off">
+            </div>
+            <div style="display: none;" class="alert alert-danger"></div>
+            <button class="btn btn-primary" id="login_by_password" type="button" disabled="disabled">{{entry_sendcode}}</button>
+            <br>
+            <button class="btn btn-link" type="button" id="get_password">{{entry_new_password}}</button>
+        </div>
+        <div id="login_code_form" style="display: none;">
+            <div class="form-group">
+                <label class="control-label" for="password_by_telephone">{{entry_telephone}}</label>
+                <input type="tel" id="password_by_telephone" value="" placeholder="{{placeholder}}" class="form-control masked" data-mask="{{phone_mask}}" autocomplete="off">
+            </div>
+            <button class="btn btn-link" type="button" id="sms_repeat"  disabled="disabled" style="display: none;" data-text="{{entry_repeat}}" data-load-text="{{entry_send_again}}"></button>
+            <div style="display: none;" class="alert alert-danger"></div>
+            <div id="success_result" style="display: none;" class="alert alert-success">{{entry_success_password}}<button class="btn btn-link" type="button" id="continue_login">{{entry_continue_login}}</button></div>
+            <button class="btn btn-primary" id="send_new_password" type="button" disabled="disabled">{{entry_new_password}}</button>
+            <br>
+            <button class="btn btn-link" type="button" id="back_form">{{entry_back}}</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function (){
+            //Все поля обязательные
+            //All fields are required
+            var sms = new smsSender({
+                loginPhoneForm : '#login_phone_form',
+                loginCodeForm : '#login_code_form',
+                maskPhone : '#send_telephone',
+                maskCode : '#password_by_telephone',
+                smsRepeat : '#sms_repeat',
+                password : '#send_password',
+                errorPhone : '#login_code_form .alert-danger',
+                errorCode : '#login_phone_form .alert-danger',
+                getCodeButton : '#login_by_password',
+                sendCodeButton : '#send_new_password',
+                successCode : '#login_code_form .alert-success',
+                smsMethod : {{method}},
+            });
+            login_by_password.addEventListener('click',()=>sms.login());
+            send_new_password.addEventListener('click',()=>sms.codeSend());
+            sms_repeat.addEventListener('click',()=>sms.codeSend());
+            get_password.addEventListener('click',()=>sms.getPassword());
+            back_form.addEventListener('click',()=>sms.back(true));
+            continue_login.addEventListener('click',()=>sms.back(true));
+        });
+    </script>
+{% endif %}
+
+

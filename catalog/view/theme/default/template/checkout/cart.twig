@@ -1,0 +1,53 @@
+
+{{ header }}
+<main>
+        <div class="breadcrumbs _container"> 
+          <div class="breadcrumbs__list">  <a class="breadcrumbs__link" href="./">Главная</a><span>Корзина</span></div>
+        </div>
+		
+        <div class="order"> 
+          <h2 class="_container order__title title">Корзина</h2>
+          <div class="order__wrapper _container">
+		  <form action="{{ action }}" method="post" enctype="multipart/form-data">
+		  {% for product in products %}
+            <div class="order__content">
+              <div class="order__pic ga1">  <img src="{{ product.thumb }}" alt="{{ product.name }}"></div>
+              <div class="order__col order__content-descr ga2">
+                <div class="order__content-title">{{ product.name }}</div>
+                <ul class="order__list">
+                  <li class="order__list-item">Код товара: {{ product.model }}</li>
+				  {% for option in product.option %}
+                  <li class="order__list-item"> <span>{{ option.name }}: </span><span class="order__list-value">{{ option.value }}</span></li>
+                  {% endfor %}
+                </ul>
+              </div>
+              <div class="order__col ga3"> 
+                <div class="counter">
+                  <input class="counter-minus" type="button" value="-">
+                  <input type="text" name="quantity[{{ product.cart_id }}]" value="{{ product.quantity }}" size="1" class="form-control" />
+                  <input class="counter-plus" type="button" value="+">
+                </div>
+              </div>
+              <div class="order__col ga4"> 
+                <div class="order__price"> <span class="order__price-new">{{ product.price }}</span></div>
+              </div>
+            </div>
+			{% endfor %}
+			</form>
+            <div class="order__total">
+              <div class="order__total-head">
+                <h3 class="order__total-title">О заказе</h3>
+              </div>
+			  {% for total in totals %}
+              <div class="order__total-content"> 
+                <div class="order__total-row"> <span>{{ total.title }}</span><span>{{ total.text }}</span></div>
+                
+              </div>
+			  {% endfor %}
+              <div class="order__total-footer"><a class="btn-default order__total-btn" href="{{ checkout }}">Перейти к оформлению</a></div>
+            </div>
+          </div>
+        </div>
+		
+      </main>
+	  {{ footer }} 

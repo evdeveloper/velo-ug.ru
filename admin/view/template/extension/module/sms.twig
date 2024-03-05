@@ -1,0 +1,167 @@
+{{ header }}{{ column_left }}
+<div id="content">
+    <div class="page-header">
+        <div class="container-fluid">
+            <div class="pull-right">
+                <button type="submit" form="form-module" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+                <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+            <h1>{{ heading_title }}</h1>
+            <ul class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %}
+                <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+                 {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+        {% if error_warning %}
+            <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+            </div>
+            <div class="panel-body">
+                <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-module" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-key">
+                            {{ entry_key }}
+                        </label>
+                        <div class="col-sm-10">
+                            <p><i>{{ entry_key_description }}</i></p>
+                            <input type="text" name="module_sms_key" value="{{ module_sms_key }}" placeholder="{{ entry_key }}" id="input-key" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-from">{{ entry_from }}</label>
+                        <div class="col-sm-10">
+                            <p><i>{{ entry_from_description }}</i></p>
+                            <input type="text" name="module_sms_from" value="{{ module_sms_from }}" placeholder="{{ entry_from }}" id="input-from" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-test">{{ entry_test }}</label>
+                        <div class="col-sm-10">
+                            <input type="checkbox" name="module_sms_test" id="input-test" {{ module_sms_test ? 'checked' : '' }}>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-partner_id">{{ entry_partner_id }}</label>
+                        <div class="col-sm-10">
+                            <p><i>{{ entry_partner_id_description }}</i></p>
+                            <input type="text" name="module_sms_partner_id" value="{{ module_sms_partner_id }}" placeholder="{{ entry_partner_id }}" id="input-partner_id" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-msg">
+                           {{entry_msg}}
+                            <p style="color: red">
+                               {{entry_msg_pattern}}
+                            </p>
+                        </label>
+                        <div class="col-sm-10">
+                            <textarea id="input-msg" name="module_sms_msg" placeholder="{{entry_msg}}"  cols="3" rows="5" class="form-control">{{module_sms_msg}}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-phonemask">
+                           {{entry_phonemask}}
+                            <p style="color:red">
+                               {{entry_phonemask_example}}
+                            </p>
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="module_sms_phonemask" value="{{module_sms_phonemask}}" placeholder="{{entry_phonemask}}" id="input-phonemask" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-phonemask_placeholder">
+                            {{entry_phonemask_placeholder}}
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="module_sms_phonemask_placeholder" value="{{module_sms_phonemask_placeholder}}" placeholder="{{entry_phonemask_placeholder}}" id="input-phonemask_placeholder" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-redirect">
+                          {{entry_redirect}}
+                            <p style="color:red">
+                               {{entry_redirect_description}}
+                            </p>
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="module_sms_redirect" value="{{module_sms_redirect}}" placeholder="{{entry_redirect}}" id="input-redirect" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-status">{{entry_status}}</label>
+                        <div class="col-sm-10">
+                            <select name="module_sms_status" id="input-status" class="form-control">
+                                {% if module_sms_status %}
+                                <option value="1" selected="selected">{{text_enabled}}</option>
+                                <option value="0">{{text_disabled}}</option>
+                                {% else %}
+                                <option value="1">{{text_enabled}}</option>
+                                <option value="0" selected="selected">{{text_disabled}}</option>
+                                {% endif %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-method">{{entry_method}}</label>
+                        <div class="col-sm-10">
+                            <select name="module_sms_method" id="input-method" class="form-control">
+                                {% if (module_sms_method is empty) or (module_sms_method == 1) %}
+                                    <option value="1" selected="selected">{{entry_method_1}}</option>
+                                    <option value="2">{{entry_method_2}}</option>
+                                    <option value="3">{{entry_method_3}}</option>
+                                {% elseif module_sms_method == 2 %}
+                                    <option value="1">{{entry_method_1}}</option>
+                                    <option value="2" selected="selected">{{entry_method_2}}</option>
+                                    <option value="3">{{entry_method_3}}</option>
+                                {% elseif module_sms_method == 3 %}
+                                    <option value="1">{{entry_method_1}}</option>
+                                    <option value="2">{{entry_method_2}}</option>
+                                    <option value="3" selected="selected">{{entry_method_3}}</option>
+                                {% endif %}
+                            </select>
+                            <br>
+                            {{entry_method_list}}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            {{entry_login_attempts}}
+                        </label>
+                        <div class="col-sm-10">
+                            {{entry_login_attempts_description}}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            {{entry_log}}
+                        </label>
+                        <div class="col-sm-10">
+                            {{entry_log_file}}
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{footer}}

@@ -1,0 +1,332 @@
+<div id="smspanel2" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header background_sms">
+                <div  class="panel-close" data-dismiss="modal" aria-hidden="true"></div>
+            </div>
+            <div class="modal-body">
+                <div class="tab-content">
+                    <div class="welcome">{{ sms_log }}</div>
+                    {% if login is defined %}
+                    <div class="sna_header log_p">{{ sms_log_p }}</div>
+                    <div class="form-group chekSms ">
+						<div class="tel">
+							<select id="demoBasic" name="region_sms">
+								{% if mask_region %}
+									{% for mask in mask_region %}
+									
+										<option value="{{ mask.mask }}" data-description="{{ mask.placeholder }}" data-imagesrc="{{ mask.image }}"></option>
+										
+									{% endfor %}
+								{% endif %}		
+								
+							</select>
+							<input type="text" name="phone"  value="" id="input-phone-login2" class="form-control"/>
+						</div>
+                        <div class="purple">{{ text_purple }}</div>
+                        <div>
+                            <button type="button" class="btn btn-center btn-primary loginsmssimplprov2" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i>{{ text_loading }}">{{ button_sms_prov }}</button>
+
+                        </div>
+                    </div>
+					{% else %}
+						<div class="sna_header login_aut">Вы уже авторизованы</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Модалки-->
+
+<script type="text/javascript"><!--
+/*$.fn.setCursorPosition = function(pos) {
+  if ($(this).get(0).setSelectionRange) {
+    $(this).get(0).setSelectionRange(pos, pos);
+  } else if ($(this).get(0).createTextRange) {
+    var range = $(this).get(0).createTextRange();
+    range.collapse(true);
+    range.moveEnd('character', pos);
+    range.moveStart('character', pos);
+    range.select();
+  }
+}; */
+
+var ddData = [];
+$('#demoBasic').ddslick({
+    data: ddData,
+    width: 70,
+   	imagePosition: "left",
+    onSelected: function (data) {
+		$('#input-phone-login2').mask(data.selectedData.value).attr('placeholder',data.selectedData.description);
+        $('.dd-desc').remove();
+
+        console.log(data.selectedData);
+    }
+});
+    //SMS
+    smspass = '';
+    smspass += '<div id="modal-sms2" class="modal fade">';
+    smspass += '<div class="modal-dialog">';
+    smspass += '<div class="modal-content">';
+    smspass += '<div class="modal-header background_sms">';
+    smspass += '<div  class="panel-close" data-dismiss="modal" aria-hidden="true"></div>';
+    smspass += '</div>';
+    smspass += '<div class="modal-body">';
+    smspass += '<div class="tab-content" style="margin-top: 30px;">';
+    smspass += '<div class="form-group required registrsms"><input type="text" name="code" size="6" placeholder="{{ entry_code }}" value="" id="input-code-login2" class="form-control"/></div>';
+    smspass += '<button type="button" class="btn btn-center btn-primary loginsmssimpl" data-loading-text="<i class=\'fa fa-spinner fa-spin\'></i>{{ text_loading }}">{{ button_sms_login }}</button>';
+    smspass += '</div>';
+    smspass += '</div>';
+    smspass += '</div>';
+    smspass += '</div>';
+    smspass += '</div>';
+    $('html body').append(smspass);
+
+    html = '';
+    html += '<div id="modal-login" class="modal fade">';
+    html += '<div class="modal-dialog">';
+    html += '<div class="modal-content">';
+    html += '<div class="modal-header background_sms">';
+    html += '<div  class="panel-close" data-dismiss="modal" aria-hidden="true"></div>';
+    html += '</div>';
+    html += '<div class="modal-body">';
+    html += '</div>';
+    html += '</div>';
+    html += '</div>';
+    html += '</div>';
+    $('html body').append(html);
+	//$("#input-phone-login2").mask("+7 (999) 999 99-99");
+   /* $('.chekSms input[name=\'phone\']').click(function(){
+		$(this).setCursorPosition(3);  // set position number
+	});*/
+    $('#smsreg').on("click", function(e){
+		event.preventDefault();
+		 $('#smspanel2').modal('show');
+		
+	});
+	$('.smsreg').on("click", function(e){
+        event.preventDefault();
+        $('#smspanel2').modal('show');
+
+    });
+
+    $('.loginsmssimplprov2').click(function () {
+
+        $.ajax({
+            url: 'index.php?route=extension/module/sms_reg/SmsCheck',
+            type: 'post',
+            data: $('#smspanel2 input[name=\'phone\']'),
+            dataType: 'json',
+            beforeSend: function () {
+                $('#smspanel2 .loginsmssimplprov2').button('loading');
+                
+            },
+            complete: function () {
+                $('#smspanel2 .loginsmssimplprov2').button('reset');
+            },
+            success: function (json) {
+
+                if (json['error']) {
+
+                    $('#modal-login .modal-body').prepend(json['error']);
+                    $('#modal-login').modal('show');
+
+                    setTimeout(function () {
+                        $('#modal-login').modal('hide');
+                        $('#modal-login .modal-body').html('');
+                    }, 2500);
+
+
+                }
+                if (json['success']) {
+                    $('#modal-sms2').remove();
+                    $('html body').append(smspass);
+                    $('#modal-sms2 .modal-body').prepend(json['success']);
+                    $('#modal-sms2').modal('show');
+					$("#input-code-login2").mask("9999");
+						/*$('.registrsms input[name=\'code\']').click(function(){
+							$(this).setCursorPosition(0);  // set position number
+						});*/
+                    $('#modal-sms2 .loginsmssimpl').click(function () {
+
+                        $.ajax({
+                            url: 'index.php?route=extension/module/sms_reg/SmsStart',
+                            type: 'post',
+                            data: $('#smspanel2 input[name=\'phone\'], .registrsms input[name=\'code\']'),
+                            dataType: 'json',
+                            beforeSend: function () {
+                                $('#modal-sms2 .loginsmssimpl').button('loading');
+                                $('#modal-quicksignup .alert-danger').remove();
+                            },
+                            complete: function () {
+                                $('#modal-sms2 .loginsmssimpl').button('reset');
+                            },
+                            success: function (json) {
+
+                                if (json['error']) {
+                                    $('#modal-login .modal-body').prepend(json['error']);
+
+                                    $('#modal-login').modal('show');
+
+                                    setTimeout(function () {
+                                        $('#modal-login').modal('hide');
+                                        $('#modal-login .modal-body').html('');
+                                    }, 2500);
+                                }
+
+                                if (json['success']) {
+								
+                                    $('#modal-login .modal-body').prepend(json['success']);
+                                    $('#modal-login').modal('show');
+                                    setTimeout(function () {
+                                        $('#modal-sms2').modal('hide');
+                                        $('#modal-sms2 .modal-body').html('');
+                                    }, 1500);
+                                    setTimeout(function () {
+                                        loacation();
+                                    }, 2000);
+                                    $('#modal-quicksignup').modal('hide');
+
+
+                                }
+                                if (json['registr']) {
+                                    $('#modal-login .modal-body').prepend(json['registr']);
+                                    $('#modal-login').modal('show');
+
+                                    setTimeout(function () {
+                                        $('#modal-login').modal('hide');
+                                        $('#modal-login .modal-body').html('');
+                                    }, 1500);
+                                    setTimeout(function () {
+                                        loacation();
+                                    }, 2000);
+                                    $('#modal-quicksignup').modal('hide');
+
+                                }
+                            }
+                        });
+                    });
+
+                    setTimeout(function () {
+                        $('#modal-login').modal('hide');
+                        $('#modal-login .modal-body').html('');
+                    }, 2500);
+
+                }
+            }
+        });
+    });
+   
+    function loacation() {
+        location.reload();
+    }
+   
+    
+
+
+
+   
+    //--></script>
+<style>
+#smspanel2 {
+padding-right: 0px !important;
+}	
+.welcome {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+#input-phone-login2 {width:100%;}
+.registrsms {display: flex;}
+.sna_header {
+    font-weight: bold;
+}
+.chekSms {
+    width: 100% !important;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+	
+}
+#input-phone-login2 {
+    text-align: left !important;
+}
+.purple {
+    color: rgb(33, 175, 207);
+}
+.background_sms {background: rgb(33, 175, 207);}
+.loginsmssimplprov2 {
+    background: rgb(45, 80, 109);
+   max-width: 250px;
+    padding: 10px 20px;
+    line-height: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 13px;
+    color: #fff;
+    border-radius: 0;
+    border: 0;
+    box-shadow: none !important;
+    margin-bottom: 10px;
+    outline: none !important;
+    margin-top: 15px;
+}
+.panel-close {
+    cursor: pointer;
+    width: 35px;
+    height: 30px;
+    background: #5a1e50 url(/image/catalog/sms_reg/close.png) no-repeat center center;
+    margin: 0 auto;
+    position: relative;float: right;bottom: 15px;
+}
+.welcome_reg {
+    text-align: center;
+    font-size: 16px;
+    margin-top: 35px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+.required {
+    position: relative;
+}
+#smspanel2 .tab-content .form-group, #modal-sms2 .tab-content .form-group {
+    margin: 15px auto;
+    width: 220px;
+}
+#smspanel2 .tab-content {
+	display:block;
+}
+#modal-sms2 .tab-content {
+	display:block;
+}
+#smspanel2 .tab-content .btn-primary, #modal-sms2 .tab-content .btn-primary {
+    min-width: 220px;
+	background: rgb(45, 80, 109);
+	display: block;
+    padding: 10px 20px;
+    line-height: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 13px;
+    color: #fff;
+    border-radius: 0;
+    border: 0;
+    box-shadow: none !important;
+    margin-bottom: 10px;
+    outline: none !important;
+	margin: 10px auto
+}
+#modal-login {
+    z-index: 99999;
+    top: 320px;
+}
+
+.tel {display:flex;}
+.dd-selected {padding:7px;}
+.login_aut {margin-bottom: 10px; text-align: center;}
+.log_p {margin-bottom: 10px; text-align: left;}
+
+
+</style>

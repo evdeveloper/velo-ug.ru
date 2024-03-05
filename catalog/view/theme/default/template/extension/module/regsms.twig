@@ -1,0 +1,64 @@
+<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="regsmsModalLabel">{{ header_title }}</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<div class="text_telephone">{{ text_regsms_telephone }}</div>
+			<div class="form-group form-telephone">
+
+						<div class="telephone-block">
+
+							<div class="select-country">
+
+								<div class="selected-country">
+
+									<input class="selected-country-mask" type="hidden" value="{{ tek_mask }}">
+									<input class="selected-country-placeholder" type="hidden" value="{{ tek_placeholder }}">
+									<a class="selected-country-image" title="{{ tek_region }}">
+										{% if tek_thumb %}
+											<img class="selected-country-img" src="{{ tek_thumb }}">
+										{% else %}
+											{{ tek_country }}
+										{% endif %}
+									</a>
+									<span class="selected-country-pointer-down"></span>
+								</div>
+
+								{% if module_regsms_mask %}
+								<ul class="countries-list" style="display: none;">
+
+									{% for mask in module_regsms_mask %}	
+									<li>
+										<a class="item-country" title="{{ mask.region }}"> 
+											<input class="item-country-mask" type="hidden" value="{{ mask.mask }}"> 
+											<input class="item-country-placeholder" type="hidden" value="{{ mask.placeholder }}"> 
+											<input class="item-country-region" type="hidden" value="{{ mask.region }}"> 
+											{% if mask.thumb %}
+												<img class="item-country-img" src="{{ mask.thumb }}">
+											{% else %}
+												{{ mask.region }}
+											{% endif %}
+										</a>
+									</li>
+									{% endfor %}									
+								</ul>
+								{% endif %}
+							</div>
+
+							<input type="text" name="telephone" placeholder="{{ tek_placeholder }}" value="" id="regsms-input-telephone" class="form-control">
+						</div>
+                        
+                        <div class="info"></div>
+                        
+			</div>
+		</div>
+		<div class="modal-footer">	
+			<div class="offer">{{ module_regsms_offer }}</div>		
+			<button type="button" class="btn btn-primary regsms_send_code" data-loading-text="{{ text_regsms_button_loading }}">{{ module_regsms_text_button }}</button>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,22 @@
+<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="regsmsModalLabel"></h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<div class="check_code">
+				<h5>{{ text_regsms_send_code_header }}</h5>
+				<div class="please_enter">{{ text_regsms_send_code_please }}</div>
+			</div>			
+		</div>
+		<div class="modal-footer smscode">	
+			<input class="smscode-telephone" type="hidden" value="{{ telephone }}">
+			<input type="text" name="smscode" placeholder="{{ text_regsms_code_placeholder }}" value="" id="regsms-input-smscode" class="form-control smscode-code">	
+			<button type="button" class="btn btn-primary regsms_auth" data-loading-text="{{ text_regsms_button_loading }}">{{ text_regsms_check_code_button }}</button>
+			<div class="no_code">{{ text_regsms_no_code }}</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,133 @@
+{{ header }} 
+
+<main>
+  <div class="breadcrumbs _container"> 
+    <div class="breadcrumbs__list"> {% for breadcrumb in breadcrumbs %}  <a class="breadcrumbs__link" href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a>{% endfor %} </div>
+  </div>
+  <div class="order"> 
+    <h2 class="_container order__title title">Оформление заказа</h2>
+	  {% if errors %}
+		  {% for error in errors %}
+			  <div class="_container alert alert-warning">{{ error }}</div>
+		  {% endfor %}
+	  {% elseif empty %}
+		  <div class="_container alert alert-info">{{ empty }}</div>
+	  {% else %}
+		  <div class="order__wrapper _container">
+        <form class="big-form" id="form" novalidate>
+          <div class="order__wrapper-col">
+            <div class="order__content order__content--mode">
+              <h3 class="order__content-title">Данные получателя</h3>
+              <div class="form__inner"> 
+                {% if customer and not logged %} 
+                  {{ customer }}
+                {% endif %} 
+              </div>
+            </div>
+            <div class="order__wrapper-col">
+              <div class="order__content order__content--mode">
+                <h3 class="order__content-title">Адрес получателя</h3>
+                <div class="form__inner"> 
+                  {% if shipping and shipping != constant('false') %} 
+                    {{ shipping }}
+                  {% endif %}
+                  {% if comment and comment != constant('false') %} 
+                    <div id="custom-comment">{{ comment }}</div>
+                  {% endif %} 
+                </div>
+                {% if payment %} 
+                  <div id="custom-payment" style="display: none;">{{ payment }}</div>
+                {% endif %}	
+              </div>
+            </div>
+          </div>
+        </form>  
+        <div class="order__total">
+          <div class="order__total-head">
+            <h3 class="order__total-title">О заказе</h3>
+          </div>
+          {% if module %} 
+            <div id="custom-module">{{ module }}</div>
+          {% endif %} 
+          {% if total %} 
+            {{ total }}
+          {% endif %} 
+          {% if payment %}
+            <div class="order__total-footer">
+              <input type="button" value="{{ button_continue }}" id="button-custom-order" data-loading-text="{{ text_loading }}" class="btn-light order__total-btn" style="display: block!important"/>
+          {% endif %}
+          {% if text_agree %} 
+            <div class="consent">
+              <input type="checkbox" name="agree" value="1" {% if agree %} checked="checked" {% endif %}  />&nbsp;
+              <label for="input-agree" class="control-label">{{ text_agree }}</label><br>
+            </div>
+          {% endif %}
+      </div>
+	  {% endif %}
+
+	  {% if cart %}
+		  <div id="custom-cart">{{ cart }}</div>
+	  {% endif %}
+
+</div>
+	
+
+	{{ content_bottom }}
+
+	<div id="custom-confirm" style="display: none;"></div>
+	
+</div> 
+<script src="js/mask.js"></script>
+<script>
+$(document).ready(function() {
+
+  $('#button-custom-order').on('click', function(){
+
+  	{% if (not logged) %} 
+
+			checkoutCustomer()
+				{% if (login is defined and login != constant('false')) %} 
+					.then( checkoutLogin )
+				{% endif %} 
+				{% if (shipping is defined and shipping != constant('false')) %} 
+					.then( checkoutShipping )
+				{% endif %} 
+					.then( checkoutPayment )
+				{% if (comment is defined and comment != constant('false')) %} 
+					.then( checkoutComment )
+				{% endif %} 
+					.then( checkoutConfirm )
+					.catch( failureCallback );
+
+  	{% else %} 
+
+  		{% if (shipping is defined and shipping != constant('false')) %} 
+
+  			checkoutShipping()
+  				.then( checkoutPayment )
+  				{% if (comment is defined and comment != constant('false')) %} 
+					.then( checkoutComment )
+				{% endif %} 
+				.then( checkoutConfirm )
+				.catch( failureCallback );
+
+  		{% else %} 
+
+  			checkoutPayment()
+  				{% if (comment is defined and comment != constant('false')) %} 
+						.then( checkoutComment )
+					{% endif %} 
+					.then( checkoutConfirm )
+					.catch( ailureCallback );
+
+
+  		{% endif %}	
+
+  	{% endif %} 
+
+  });
+
+});
+  
+</script>
+{{ footer }}

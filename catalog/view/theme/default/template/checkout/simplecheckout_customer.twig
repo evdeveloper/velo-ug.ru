@@ -1,0 +1,12 @@
+<div class="order"> 
+<div class="order__wrapper-col">
+                <div class="order__content order__content--mode">
+                  <h3 class="order__content-title">Данные получателя</h3>
+                  <div class="form__inner"> 
+				  {% for row in rows %}
+                    <div class="form__item">
+                      {{ row }}
+                    </div>
+					{% endfor %}
+                  </div>
+                </div>

@@ -1,0 +1,275 @@
+{{ header }}
+
+
+<main>
+        
+		<div class="breadcrumbs _container"> 
+          <div class="breadcrumbs__list">  {% for breadcrumb in breadcrumbs %}<a class="breadcrumbs__link" href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a>{% endfor %}</div>
+        </div>
+		
+        <div class="catalog _container"> 
+          <div class="catalog__head"> 
+            <h2 class="catalog__title title">{{ heading_title }}</h2><span class="catalog__items-quantity"></span>
+          </div>
+        </div>
+        <div class="_container brends-wrap">
+          <div class="brends">{% for category in categories %}<a class="brends__item" href="{{ category.href }}">{{ category.name }}</a>{% endfor %}</div>
+        </div>
+        <div class="catalog__wrapper _container">
+          <div class="catalog__filter filter"> 
+            <div class="filter__block">
+              <h3 class="filter__title"> <span>Категории</span>
+                <svg width="8" height="4">
+                  <use href="#nav-arrow-icn"></use>
+                </svg>
+              </h3>
+              <div class="filter__content">
+                <button class="filter__btn">Велосипеды все</button>
+                <div class="filter__checks">
+                  <div class="filter__check">
+                    <input type="checkbox" id="check1">
+                    <label for="check1">Горные</label>
+                  </div>
+                  <div class="filter__check">
+                    <input type="checkbox" id="check2">
+                    <label for="check2">Подростковые</label>
+                  </div>
+                  <div class="filter__check">
+                    <input type="checkbox" id="check3">
+                    <label for="check3">Детские</label>
+                  </div>
+                </div>
+                <button class="filter__btn">Самокаты</button>
+                <div class="filter__checks">
+                  <div class="filter__check">
+                    <input type="checkbox" id="check4">
+                    <label for="check4">Горные</label>
+                  </div>
+                  <div class="filter__check">
+                    <input type="checkbox" id="check5">
+                    <label for="check5">Подростковые</label>
+                  </div>
+                </div>
+                <button class="filter__btn">Скейтбординг</button>
+                <div class="filter__checks">
+                  <div class="filter__check">
+                    <input type="checkbox" id="check6">
+                    <label for="check6">Горные</label>
+                  </div>
+                  <div class="filter__check">
+                    <input type="checkbox" id="check7">
+                    <label for="check7">Подростковые</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="filter__block">
+              <h3 class="filter__title"> <span>Бренды</span>
+                <svg width="8" height="4">
+                  <use href="#nav-arrow-icn"></use>
+                </svg>
+              </h3>
+              <div class="filter__content">
+                <div class="filter__checks">
+                  <div class="filter__check"> 
+                    <input type="checkbox" id="check8">
+                    <label for="check8">BLACKOUT</label>
+                  </div>
+                  <div class="filter__check"> 
+                    <input type="checkbox" id="check9">
+                    <label for="check9">SCENERIDE</label>
+                  </div>
+                  <div class="filter__check"> 
+                    <input type="checkbox" id="check10">
+                    <label for="check10">MATCH</label>
+                  </div>
+                  <div class="filter__check"> 
+                    <input type="checkbox" id="check11">
+                    <label for="check11">SHIFT</label>
+                  </div>
+                  <div class="filter__check"> 
+                    <input type="checkbox" id="check12">
+                    <label for="check12">PULSE</label>
+                  </div>
+                  <div class="filter__check"> 
+                    <input type="checkbox" id="check13">
+                    <label for="check13">FLAGMAN</label>
+                  </div>
+                  <div class="filter__check"> 
+                    <input type="checkbox" id="check14">
+                    <label for="check14">KMS</label>
+                  </div>
+                  <div class="filter__check"> 
+                    <input type="checkbox" id="check15">
+                    <label for="check15">Зайка</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="filter__block">
+              <h3 class="filter__title"> <span>Колеса</span>
+                <svg width="8" height="4">
+                  <use href="#nav-arrow-icn"></use>
+                </svg>
+              </h3>
+              <div class="filter__content">
+                <div class="filter__checks">
+                  <div class="filter__check">
+                    <input type="checkbox" id="check16">
+                    <label for="check16">12”</label>
+                  </div>
+                  <div class="filter__check">
+                    <input type="checkbox" id="check17">
+                    <label for="check17">14”</label>
+                  </div>
+                  <div class="filter__check">
+                    <input type="checkbox" id="check18">
+                    <label for="check18">16”</label>
+                  </div>
+                  <div class="filter__check">
+                    <input type="checkbox" id="check19">
+                    <label for="check19">18”</label>
+                  </div>
+                  <div class="filter__check">
+                    <input type="checkbox" id="check20">
+                    <label for="check20">20”</label>
+                  </div>
+                  <div class="filter__check">
+                    <input type="checkbox" id="check21">
+                    <label for="check21">22”</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="filter__block">
+              <h3 class="filter__title"><span>Навеска</span>
+                <svg width="8" height="4"> 
+                  <use href="#nav-arrow-icn"></use>
+                </svg>
+              </h3>
+            </div>
+            <div class="filter__block">
+              <h3 class="filter__title"><span>Материал</span>
+                <svg width="8" height="4"> 
+                  <use href="#nav-arrow-icn"></use>
+                </svg>
+              </h3>
+            </div>
+            <div class="filter__block">
+              <h3 class="filter__title"><span>Пол</span>
+                <svg width="8" height="4"> 
+                  <use href="#nav-arrow-icn"></use>
+                </svg>
+              </h3>
+            </div>
+            <div class="filter__block">
+              <h3 class="filter__title"><span>Рама</span>
+                <svg width="8" height="4">
+                  <use href="#nav-arrow-icn"></use>
+                </svg>
+              </h3>
+            </div>
+            <div class="filter__block">
+              <h3 class="filter__title"><span>Количество скоростей</span>
+                <svg width="8" height="4"> 
+                  <use href="#nav-arrow-icn"></use>
+                </svg>
+              </h3>
+            </div>
+            <div class="filter__block">
+              <h3 class="filter__title"><span>Вид тормозной системы</span>
+                <svg width="8" height="4"> 
+                  <use href="#nav-arrow-icn"></use>
+                </svg>
+              </h3>
+            </div>
+            <div class="filter__block">
+              <h3 class="filter__title"><span>Особенности</span>
+                <svg width="8" height="4"> 
+                  <use href="#nav-arrow-icn"></use>
+                </svg>
+              </h3>
+            </div>
+            <div class="filter__block">
+              <h3 class="filter__title"><span>Цвет</span>
+                <svg width="8" height="4"> 
+                  <use href="#nav-arrow-icn"></use>
+                </svg>
+              </h3>
+            </div>
+            <div class="filter__block">
+              <h3 class="filter__title"><span>Цена</span>
+                <svg width="8" height="4"> 
+                  <use href="#nav-arrow-icn"></use>
+                </svg>
+              </h3>
+              <div class="filter__content">
+                <div class="filter__price"> 
+                  <input class="filter__price-from" type="text" placeholder="от">
+                  <input class="filter__price-before" type="text" placeholder="до">
+                </div>
+                <div class="filter__radios"> 
+                  <div class="filter__radio"> 
+                    <input type="radio" id="rad1" name="price">
+                    <label for="rad1">5000-10000 Р</label>
+                  </div>
+                  <div class="filter__radio"> 
+                    <input type="radio" id="rad2" name="price">
+                    <label for="rad2">10000-20000 Р</label>
+                  </div>
+                  <div class="filter__radio"> 
+                    <input type="radio" id="rad3" name="price">
+                    <label for="rad3">20000 и дороже</label>
+                  </div>
+                  <div class="filter__radio"> 
+                    <input type="radio" id="rad5" name="price">
+                    <label for="rad5">Не важно</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="filter__buttons"> 
+              <button class="btn-default">Показать</button>
+              <button class="btn-light">Сбросить</button>
+            </div>
+          </div>
+          <div class="catalog__content"> 
+            <div class="catalog__params">
+              <select class="catalog__select">
+			   {% for sorts in sorts %}
+					{% if sorts.value == '%s-%s'|format(sort, order) %}
+                <option value="{{ sorts.href }}" selected="selected">{{ sorts.text }}</option>
+					{% else %} 
+				<option value="{{ sorts.href }}">{{ sorts.text }}</option>	
+					{% endif %}
+					{% endfor %}
+              </select>
+              <button class="catalog__btn-filter" id="openFilter"> 
+                <svg width="22" height="22">
+                  <use href="#settings-icn"></use>
+                </svg>
+              </button>
+            </div>
+            <div class="catalog__inner"> 
+              {% for product in products %}
+			  <div class="card"> 
+                <div class="card__pic"><img src="{{ product.thumb }}" alt="{{ product.name }}"></div>
+                <div class="card__content">
+                  {% if product.special %}<div class="card__price"> <span class="card__price-new">{{ product.special }}</span><span class="card__price-old">{{ product.price }}</span></div><a class="card__descr" href="{{ product.href }}">{{ product.name }}</a>{% else %}
+				  <div class="card__price"> <span class="card__price-new">{{ product.price }}</span></div><a class="card__descr" href="{{ product.href }}">{{ product.name }}</a>{% endif %}
+                </div>
+                <a href="{{ product.href }}"><button class="btn-default card__btn">Выбрать</button></a>
+              </div>
+          {% endfor %}
+            </div>
+            <ul class="catalog__pagination"> 
+              {{ pagination }}
+            </ul>
+          </div>
+        </div>
+{{ footer }} 
+
+
+
+
+

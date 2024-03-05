@@ -1,0 +1,49 @@
+</div><div class="location location--mount">
+          <div class="location__wrapper location__wrapper--mount _container">
+            <div class="location__head">
+              <h2 class="location__title title">Где купить?</h2>
+              <div class="location__place">Ростов-на-дону</div>
+            </div>
+          </div>
+          <div class="map" id="map"></div>
+        </div>
+      </main>
+      <footer class="footer">
+        <div class="footer__wrapper _container"><a class="footer__logo" href="index.html"> <img src="img/logo-white.svg" alt="логотип вело юг"></a>
+          <div class="footer__content"> 
+            <div class="footer__col">
+              <h3 class="footer__title">Каталог</h3><a class="footer__link" href="/index.php?route=product/category&path=59_63">Велосипед детский</a><a class="footer__link" href="/index.php?route=product/category&path=59_62">Велосипед взрослый</a><a class="footer__link" href="/index.php?route=product/category&path=60">Самокат</a>
+            </div>
+            <div class="footer__col">
+              <h3 class="footer__title">Каталог</h3><a class="footer__link" href="/index.php?route=information/instruction">Видео по сборке</a><a class="footer__link" href="/index.php?route=information/markets">Где купить</a><a class="footer__link" href="/index.php?route=information/model">Технологии</a>{% for information in informations %}<a class="footer__link" href="{{ information.href }}">{{ information.title }}</a>{% endfor %}
+            </div>
+            <div class="footer__col">
+              <h3 class="footer__title">Дилерам</h3><a class="footer__link" href="/index.php?route=information/dilers">Написать нам</a>
+            </div>
+            <div class="footer__col">
+              <h3 class="footer__title">Связаться с нами</h3><a class="footer__link" href="">+7 (918) 599-96-21</a><a class="footer__link" href="">igrushki.veloopt2@toysbag.ru</a>
+            </div>
+            <div class="footer__col">
+              <h3 class="footer__title">Наш адрес</h3><span class="footer__text">Ростов-на-Дону</span><span class="footer__text">ул. Днепропетровская  83</span>
+            </div>
+          </div>
+        </div>
+        <div class="mobile-actions"> <a href="./">
+            <svg width="28" height="26">
+              <use href="#main-mobile-icn"></use>
+            </svg></a><a href="search.html">
+            <svg width="25" height="23">
+              <use href="#search-mobile-icn"></use>
+            </svg></a><a href="/index.php?route=checkout/cart">
+            <svg width="27" height="26">
+              <use href="#basket-mobile-icn"> </use>
+            </svg></a><a href="/index.php?route=account/login">
+            <svg width="22" height="27">
+              <use href="#lk-mobile-icn"> </use>
+            </svg></a></div>
+			<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"> </script>
+      <script src="https://asunhelp.ru/js/ya-map.js"></script>
+      </footer>
+    </div>
+  </body>
+</html>
