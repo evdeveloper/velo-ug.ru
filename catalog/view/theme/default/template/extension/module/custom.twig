@@ -2,7 +2,11 @@
 
 <main>
   <div class="breadcrumbs _container"> 
-    <div class="breadcrumbs__list"> {% for breadcrumb in breadcrumbs %}  <a class="breadcrumbs__link" href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a>{% endfor %} </div>
+    <div class="breadcrumbs__list"> 
+      {% for breadcrumb in breadcrumbs %}  
+        <a class="breadcrumbs__link" href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a>
+      {% endfor %} 
+    </div>
   </div>
   <div class="order"> 
     <h2 class="_container order__title title">Оформление заказа</h2>

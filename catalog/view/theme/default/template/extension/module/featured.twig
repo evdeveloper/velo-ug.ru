@@ -1,24 +1,43 @@
-<div class="block-carousel"> 
-            <div class="block-carousel__head">
-              <h2 class="block-carousel__title title"> {{ heading_title }}</h2><a class="link-arrow" href="#">Смотреть больше
-                <svg width="25" height="24">
-                  <use href="#arrow-icn"> </use>
-                </svg></a>
-            </div>
-            <div class="swiper swiper-other">
-              <div class="swiper-wrapper">
-			  {% for product in products %}
-                <div class="swiper-slide"> 
-                  <div class="card"> 
-                    <div class="card__pic"><img src="{{ product.thumb }}" alt="{{ product.name }}"></div>
-                    <div class="card__content">
-                      {% if product.special %}<div class="card__price"> <span class="card__price-new">{{ product.special }}</span><span class="card__price-old">{{ product.price }}</span></div><a class="card__descr" href="{{ product.href }}">{{ product.name }}</a>{% else %}
-					  <div class="card__price"> <span class="card__price-new">{{ product.price }}</span></div><a class="card__descr" href="{{ product.href }}">{{ product.name }}</a>{% endif %}
-                    </div>
-                    <a href="{{ product.href }}"><button class="btn-default card__btn">Выбрать</button></a>
-                  </div>
+<section class="s-featured">
+  <div class="container">
+    <div class="block-carousel"> 
+      <div class="block-carousel__head">
+        <h2 class="block-carousel__title title">{{ heading_title }}</h2>
+        <a class="link-arrow" href="#">Смотреть больше
+          <svg width="25" height="24">
+            <use href="#arrow-icn"> </use>
+          </svg>
+        </a>
+      </div>
+      <div class="swiper swiper-other">
+        <div class="swiper-wrapper">
+          {% for product in products %}
+            <div class="swiper-slide"> 
+              <div class="card"> 
+                <div class="card__pic">
+                  <img src="{{ product.thumb }}" alt="{{ product.name }}">
                 </div>
-				{% endfor %}
+                <div class="card__content">
+                  {% if product.special %}
+                    <div class="card__price">
+                      <span class="card__price-new">{{ product.special }}</span>
+                      <span class="card__price-old">{{ product.price }}</span>
+                    </div>
+                    <a class="card__descr" href="{{ product.href }}">{{ product.name }}</a>
+                  {% else %}
+                    <div class="card__price">
+                      <span class="card__price-new">{{ product.price }}</span>
+                    </div>
+                    <a class="card__descr" href="{{ product.href }}">{{ product.name }}</a>
+                  {% endif %}
+                </div>
+                <a href="{{ product.href }}" class="btn-default card__btn">Выбрать</a>
               </div>
             </div>
-          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

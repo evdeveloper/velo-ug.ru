@@ -1,49 +1,61 @@
 {{ header }}
 <main>
-        <div class="breadcrumbs _container"> 
-          <div class="breadcrumbs__list">  <a class="breadcrumbs__link" href="./">Главная</a><span>Дилерам</span></div>
+  <div class="breadcrumbs">
+    <div class="container">
+      <div class="breadcrumbs__list">
+        <a class="breadcrumbs__link" href="/">Главная</a>
+        <span>Дилерам</span>
+      </div>
+    </div>
+  </div>
+  <section class="s-dealer">
+    <div class="container">
+      <div class="dealer">
+        <div class="dealer__head">
+          <h2 class="title dealer__title">
+          <span>Стань дилером</span><br>
+          велосипедов Вело-юг!
+          </h2>
+          <div class="dealer__descr"> 
+            <p>Вело-юг - это российский производитель горных велосипедов, который активно работает над расширением своей бизнес-географии. </p>
+            <p>Мы приглашаем дилеров из разных регионов России на взаимовыгодное сотрудничество, чтобы вместе развивать нашу марку и предоставлять качественные велосипеды на рынке.</p>
+          </div>
         </div>
-        <div class="dealer _container">
-          <div class="dealer__head">
-            <h2 class="title dealer__title"> <span>Стань дилером</span><span>велосипедов Вело-юг! </span></h2>
-            <div class="dealer__descr"> 
-              <p>Вело-юг - это российский производитель горных велосипедов, который активно работает над расширением своей бизнес-географии. </p>
-              <p>Мы приглашаем дилеров из разных регионов России на взаимовыгодное сотрудничество, чтобы вместе развивать нашу марку и предоставлять качественные велосипеды на рынке.</p>
+        <form class="dealer__form form" action="" novalidate> 
+          <h3 class="dealer__form-title">Заполните форму</h3>
+          <div class="form-dealer">
+            <div class="form__item">
+              <input class="form__input" type="text" required>
+              <label class="form__label">ФИО <span>*</span></label>
+            </div>
+            <div class="form__item w50">
+              <input class="form__input tel" type="text" required>
+              <label class="form__label">Телефон <span>*</span></label>
+            </div>
+            <div class="form__item w50">
+              <input class="form__input" type="text" required>
+              <label class="form__label">Email <span>*</span></label>
+            </div>
+            <div class="form__item w50">
+              <input class="form__input" type="text" required>
+              <label class="form__label">Страна</label>
+            </div>
+            <div class="form__item w50">
+              <input class="form__input" type="text" required>
+              <label class="form__label">Город <span>*</span></label>
+            </div>
+            <div class="form__item">
+              <textarea class="form__input form__textarea" type="text" placeholder="Ваш сайт, пожеланя или коментарии"></textarea>
             </div>
           </div>
-          <form class="dealer__form form" action="" novalidate> 
-            <h3 class="dealer__form-title">Заполните форму</h3>
-            <div class="form-dealer">
-              <div class="form__item">
-                <input class="form__input" type="text" required>
-                <label class="form__label">ФИО <span>*</span></label>
-              </div>
-              <div class="form__item w50">
-                <input class="form__input tel" type="text" required>
-                <label class="form__label">Телефон <span>*</span></label>
-              </div>
-              <div class="form__item w50">
-                <input class="form__input" type="text" required>
-                <label class="form__label">Email <span>*</span></label>
-              </div>
-              <div class="form__item w50">
-                <input class="form__input" type="text" required>
-                <label class="form__label">Страна <span>*</span></label>
-              </div>
-              <div class="form__item w50">
-                <input class="form__input" type="text" required>
-                <label class="form__label">Город <span>*</span></label>
-              </div>
-              <div class="form__item">
-                <textarea class="form__input form__textarea" type="text" placeholder="Ваш сайт, пожеланя или коментарии"></textarea>
-              </div>
-            </div>
-            <div class="dealer-form__footer">
-              <button class="btn-default dealer__submit" type="submit">Отправить</button>
-              <div class="consent">Нажимая на кнопку, вы соглашетесь с <a href="">Условиями обработки персональных данных</a></div>
-            </div>
-          </form>
-        </div>
-      </main>
-	  <script src="js/mask.js"></script>
+          <div class="dealer-form__footer">
+            <button class="btn-default" type="submit">Отправить</button>
+            <div class="consent">Нажимая на кнопку, вы соглашетесь с <a href="">Условиями обработки персональных данных</a></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="js/mask.js"></script>
 {{ footer }}

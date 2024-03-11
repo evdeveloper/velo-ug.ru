@@ -40,12 +40,12 @@
 <script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="https://asunhelp.ru/catalog/view/javascript/common.js"></script>
 <script src="js/swiper-bundle.min.js"></script>
+<script src="js/main.js"></script>
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"> </script>
 <script src="https://asunhelp.ru/js/ya-map.js"></script>
 <script src="https://asunhelp.ru/js/popper.min.js"></script>
 <script src="https://asunhelp.ru/js/tippy-bundle.umd.js"></script>
 <script src="https://asunhelp.ru/js/air-datepicker.min.js"></script>
-<script src="https://asunhelp.ru/js/main.js"></script>
 {% for link in links %}
 <link href="{{ link.href }}" rel="{{ link.rel }}" />
 {% endfor %}
@@ -60,5 +60,5 @@
       
 <body class="main-page">
   <div class="wrapper">
-    <header>{{ menu }}</header>
+    <header class="header">{{ menu }}</header>
 

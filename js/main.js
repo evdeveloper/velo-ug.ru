@@ -304,7 +304,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 		const counters = document.querySelectorAll('.swiper-counter')
 		counters.forEach(counter => {
-			console.log(counter)
 			if (counter.querySelector('.counter__start')) {
 				counter.querySelector('.counter__start').innerHTML = '1'
 			}
@@ -314,28 +313,28 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 
 
-	function openModelCharacter() {
-		const wrap = document.querySelector('.model-charact')
-		wrap.addEventListener('click', function (e) {
-			const items = document.querySelectorAll('.model-charact__content')
-			const target = e.target
-			console.log(target)
-			items.forEach(item => {
-				item.classList.remove('active')
-				item.closest('.model-charact__item').querySelector('.model-charact__head').classList.remove('active')
-			})
-			if (target.classList.contains('model-charact__text')) {
-				target.closest('.model-charact__item').querySelector('.model-charact__head').classList.toggle('active')
-			}
-			if (target.classList.contains('model-charact__text')) {
-				target.closest('.model-charact__item').querySelector('.model-charact__head').classList.toggle('active')
-			}
-			target.closest('.model-charact__item').querySelector('.model-charact__head').classList.toggle('active')
-		})
-	}
-	if (document.querySelector('.model-charact')) {
-		openModelCharacter()
-	}
+	// function openModelCharacter() {
+	// 	const wrap = document.querySelector('.model-charact')
+	// 	wrap.addEventListener('click', function (e) {
+	// 		const items = document.querySelectorAll('.model-charact__content')
+	// 		const target = e.target
+	// 		console.log(target)
+	// 		items.forEach(item => {
+	// 			item.classList.remove('active')
+	// 			item.closest('.model-charact__item').querySelector('.model-charact__head').classList.remove('active')
+	// 		})
+	// 		if (target.classList.contains('model-charact__text')) {
+	// 			target.closest('.model-charact__item').querySelector('.model-charact__head').classList.toggle('active')
+	// 		}
+	// 		if (target.classList.contains('model-charact__text')) {
+	// 			target.closest('.model-charact__item').querySelector('.model-charact__head').classList.toggle('active')
+	// 		}
+	// 		target.closest('.model-charact__item').querySelector('.model-charact__head').classList.toggle('active')
+	// 	})
+	// }
+	// if (document.querySelector('.model-charact')) {
+	// 	openModelCharacter()
+	// }
 
 	tippy(document.querySelectorAll('.tooltip'), {});
 

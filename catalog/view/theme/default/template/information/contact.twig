@@ -1,35 +1,41 @@
 {{ header }}
-
-      <main>
-        <div class="breadcrumbs _container"> 
-          <div class="breadcrumbs__list">  <a class="breadcrumbs__link" href="index.html">Главная</a><span>Напишите нам</span></div>
-        </div>
-        <div class="_container">
-          <h2 class="title">Напишите нам    </h2>
-        </div>
-        <div class="feedback _container">
-          <h3 class="feedback__title">Задайте свой вопрос</h3>
-          <div class="feedback__inner"> 
-            <form class="form feedback__form" id="form" action="{{ action }}" method="post" enctype="multipart/form-data" novalidate>
-              <div class="form__item">
-                <input class="form__input form__name" type="text" name="name" value="{{ name }}" required>
-                <label class="form__label" for="">Имя <span>*</span></label>
-              </div>
-              <div class="form__item">
-                <input class="form__input form__phone tel" type="text" name="email" value="{{ email }}" minlength="10" required>
-                <label class="form__label tel" for="">Телефон <span>*</span></label>
-              </div>
-              <div class="form__item">
-                <textarea class="form__textarea" id="input-enquiry" placeholder="Вопрос"></textarea>
-              </div>
-            </form>
-            <div class="feedback__footer"> 
-              <input class="btn-default feedback__submit" type="submit" value="Отправить" form="form">
-              <div class="consent">Нажимая на кнопку, вы соглашетесь с <a href="">Условиями обработки персональных данных</a></div>
+<main>
+  <div class="breadcrumbs">
+    <div class="container">
+      <div class="breadcrumbs__list">
+        <a class="breadcrumbs__link" href="/">Главная</a>
+        <span>Напишите нам</span>
+      </div>
+    </div>
+  </div>
+  <section class="s-feedback">
+    <div class="container">
+      <h2 class="feedback__head-title">Напишите нам</h2>
+      <div class="feedback">
+        <h3 class="feedback__title">Задайте свой вопрос</h3>
+        <div class="feedback__inner"> 
+          <form class="form feedback__form" id="form" action="{{ action }}" method="post" enctype="multipart/form-data" novalidate>
+            <div class="form__item">
+              <input class="form__input form__name" type="text" name="name" value="{{ name }}" required>
+              <label class="form__label" for="">Имя <span>*</span></label>
             </div>
+            <div class="form__item">
+              <input class="form__input form__phone tel" type="text" name="email" value="{{ email }}" minlength="10" required>
+              <label class="form__label tel" for="">Телефон <span>*</span></label>
+            </div>
+            <div class="form__item">
+              <textarea class="form__textarea" id="input-enquiry" placeholder="Вопрос"></textarea>
+            </div>
+          </form>
+          <div class="feedback__footer"> 
+            <input class="btn-default feedback__submit" type="submit" value="Отправить" form="form">
+            <div class="consent">Нажимая на кнопку, вы соглашетесь с <a href="">Условиями обработки персональных данных</a></div>
           </div>
         </div>
-        
-      </main>
-      <script src="js/mask.js"></script>
+      </div>
+    </div>
+  </section>
+</main>
+{{ content_bottom }}
+<script src="js/mask.js"></script>
 {{ footer }}

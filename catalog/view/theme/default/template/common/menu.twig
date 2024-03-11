@@ -1,76 +1,109 @@
-{% if categories %}
-<header class="header">
-        <div class="header__wrapper _container"> 
-          <div class="search">
-            <button class="search__btn">
-              <svg width="10" height="16">
-                <use href="#arrow-back"></use>
+<div class="container">
+  <div class="header__wrapper"> 
+    <div class="search">
+      <button class="search__btn">
+        <svg width="10" height="16">
+          <use href="#arrow-back"></use>
+        </svg>
+      </button>
+      <div class="search__item">
+        <input class="search__input" type="search" placeholder="Поиск">
+      </div>
+    </div>
+    <a class="header__logo" href="/">
+      <img src="./img/logo.svg" alt="логотип вело юг">
+    </a>
+    <nav class="header__nav nav-menu">
+      <ul class="mav-menu__list">
+        <li class="nav-menu__item">
+          <a class="nav-menu__link">
+            <span>Каталог</span>
+              <svg class="nav-menu-arrow" width="13" height="8">
+                <use href="#nav-arrow-icn"></use>
               </svg>
-            </button>
-            <div class="search__item">
-              <input class="search__input" type="search" placeholder="Поиск">
+          </a>
+          {% if categories %}
+            <div class="nav-menu__sub submenu">
+              <ul class="submenu__wrapper">
+                {% for category in categories %}
+                  <li class="submenu__col submenu__col-brends"> 
+                    <h4 class="submenu__title">{{ category.name }}</h4>
+                    {% if category.children %}
+                      {% for children in category.children %}
+                        <a class="submenu__link" href="{{ children.href }}">{{ children.name }}</a>
+                      {% endfor %}
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
             </div>
-          </div><a class="header__logo" href="./"><img src="./img/logo.svg" alt="логотип вело юг"></a>
-          <nav class="header__nav nav-menu">
-            <ul class="mav-menu__list">
-              <li class="nav-menu__item"><a class="nav-menu__link"><span>Каталог</span>
-                  <svg class="nav-menu-arrow" width="13" height="8">
-                    <use href="#nav-arrow-icn"></use>
-                  </svg></a>
-                <div class="nav-menu__sub submenu">
-                  <ul class="submenu__wrapper">
-					{% for category in categories %}
-					
-                    <li class="submenu__col submenu__col-brends"> 
-                      <h4 class="submenu__title">{{ category.name }}</h4>{% if category.children %}{% for children in category.children %}<a class="submenu__link" href="{{ children.href }}">{{ children.name }}</a>{% endfor %}{% endif %}
-                    </li>
-					
-					{% endfor %}
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-menu__item"><a class="nav-menu__link" href="/index.php?route=information/model"><span>Технологии</span></a></li>
-              <li class="nav-menu__item"><a class="nav-menu__link"><span>Покупателям</span>
-                  <svg class="nav-menu-arrow" width="13" height="8">
-                    <use href="#nav-arrow-icn"></use>
-                  </svg></a>
-                <ul class="nav-menu__sub submenu">
-                  <div class="submenu__wrapper">
-                    <li class="submenu__col"> <a class="submenu__link" href="/index.php?route=information/markets"> Где купить</a></li>
-                    <li class="submenu__col"> <a class="submenu__link" href="/index.php?route=information/instruction"> Видео сборки</a></li>
-                    <li class="submenu__col"> <a class="submenu__link" href="/index.php?route=information/support"> Техподдержка</a></li>
-                    <li class="submenu__col"> <a class="submenu__link" href="/index.php?route=information/contact"> Написать нам</a></li>
-                  </div>
-                </ul>
-              </li>
-              <li class="nav-menu__item"><a class="nav-menu__link" href="/index.php?route=information/contact"><span>Контакты</span></a></li>
-              <li class="nav-menu__item"><a class="nav-menu__link" href="/index.php?route=information/dilers"><span>Дилерам</span></a></li>
-            </ul>
-            <div class="mobile-actions"> <a href="index.html">
-                <svg width="28" height="26">
-                  <use href="#main-mobile-icn"></use>
-                </svg></a><a href="">
-                <svg width="25" height="23">
-                  <use href="#search-mobile-icn"></use>
-                </svg></a><a href="/index.php?route=checkout/cart">
-                <svg width="27" height="26">
-                  <use href="#basket-mobile-icn"> </use>
-                </svg></a><a href="/index.php?route=account/login">
-                <svg width="22" height="27">
-                  <use href="#lk-mobile-icn"> </use>
-                </svg></a></div>
-          </nav>
-          <div class="header__actions"> <a id="search" href="search.html">
-              <svg width="18" height="18">
-                <use href="#search-icn"> </use>
-              </svg></a><a href="/index.php?route=account/login"> 
-              <svg width="15" height="18">
-                <use href="#lk-icn"> </use>
-              </svg></a><a class="header__actions-basket" href="/index.php?route=checkout/cart" data-count="1">
-              <svg width="20" height="20">
-                <use href="#basket-icn"> </use>
-              </svg></a></div>
-          <button class="burger"></button>
-        </div>
-      </header>
-{% endif %} 
+          {% endif %} 
+        </li>
+        <li class="nav-menu__item">
+          <a class="nav-menu__link" href="/index.php?route=information/model">
+            <span>Технологии</span>
+          </a>
+        </li>
+        <li class="nav-menu__item">
+          <a class="nav-menu__link">
+            <span>Покупателям</span>
+            <svg class="nav-menu-arrow" width="13" height="8">
+              <use href="#nav-arrow-icn"></use>
+            </svg></a>
+            <div class="nav-menu__sub submenu">
+              <ul class="submenu__wrapper">
+                <li class="submenu__col">
+                  <a class="submenu__link" href="/index.php?route=information/market">Где купить</a>
+                </li>
+                <li class="submenu__col">
+                  <a class="submenu__link" href="/index.php?route=information/instruction">Видео сборки</a>
+                </li>
+                <li class="submenu__col">
+                  <a class="submenu__link" href="/index.php?route=information/support">Техподдержка</a>
+                </li>
+                <li class="submenu__col">
+                  <a class="submenu__link" href="/index.php?route=information/contact">Написать нам</a>
+                </li>
+              </ul>
+            </div>
+        </li>
+        <li class="nav-menu__item">
+          <a class="nav-menu__link" href="/index.php?route=information/contact">
+            <span>Контакты</span>
+          </a>
+        </li>
+        <li class="nav-menu__item">
+          <a class="nav-menu__link" href="/index.php?route=information/dilers">
+            <span>Дилерам</span>
+          </a>
+        </li>
+      </ul>
+      <div class="mobile-actions"> 
+        <a href="/">
+          <svg width="28" height="26">
+            <use href="#main-mobile-icn"></use>
+          </svg></a><a href="">
+          <svg width="25" height="23">
+            <use href="#search-mobile-icn"></use>
+          </svg></a><a href="/index.php?route=checkout/cart">
+          <svg width="27" height="26">
+            <use href="#basket-mobile-icn"> </use>
+          </svg></a><a href="/index.php?route=account/login">
+          <svg width="22" height="27">
+            <use href="#lk-mobile-icn"> </use>
+          </svg></a></div>
+    </nav>
+    <div class="header__actions"> 
+      <a id="search" href="search.html">
+        <svg width="18" height="18">
+          <use href="#search-icn"> </use>
+        </svg></a><a href="/index.php?route=account/login"> 
+        <svg width="15" height="18">
+          <use href="#lk-icn"> </use>
+        </svg></a><a class="header__actions-basket" href="/index.php?route=checkout/cart" data-count="1">
+        <svg width="20" height="20">
+          <use href="#basket-icn"> </use>
+        </svg></a></div>
+    <button class="burger"></button>
+  </div>
+</div>

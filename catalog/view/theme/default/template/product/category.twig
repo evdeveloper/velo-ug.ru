@@ -1,21 +1,27 @@
 {{ header }}
-
-
+{{ content_top }}
 <main>
-        
-		<div class="breadcrumbs _container"> 
-          <div class="breadcrumbs__list">  {% for breadcrumb in breadcrumbs %}<a class="breadcrumbs__link" href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a>{% endfor %}</div>
+  <div class="breadcrumbs">
+    <div class="container">
+      <div class="breadcrumbs__list">
+        {% for breadcrumb in breadcrumbs %}
+          <a class="breadcrumbs__link" href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+	<section class="s-catalog">
+    <div class="container">
+      <div class="catalog">
+        <div class="catalog__head"> 
+          <h2 class="catalog__title title">{{ heading_title }}</h2>
+          <span class="catalog__items-quantity"></span>
         </div>
-		
-        <div class="catalog _container"> 
-          <div class="catalog__head"> 
-            <h2 class="catalog__title title">{{ heading_title }}</h2><span class="catalog__items-quantity"></span>
-          </div>
         </div>
-        <div class="_container brends-wrap">
+        <div class="brends-wrap">
           <div class="brends">{% for category in categories %}<a class="brends__item" href="{{ category.href }}">{{ category.name }}</a>{% endfor %}</div>
         </div>
-        <div class="catalog__wrapper _container">
+        <div class="catalog__wrapper">
           <div class="catalog__filter filter"> 
             <div class="filter__block">
               <h3 class="filter__title"> <span>Категории</span>
@@ -236,13 +242,13 @@
           <div class="catalog__content"> 
             <div class="catalog__params">
               <select class="catalog__select">
-			   {% for sorts in sorts %}
-					{% if sorts.value == '%s-%s'|format(sort, order) %}
-                <option value="{{ sorts.href }}" selected="selected">{{ sorts.text }}</option>
-					{% else %} 
-				<option value="{{ sorts.href }}">{{ sorts.text }}</option>	
-					{% endif %}
-					{% endfor %}
+			          {% for sorts in sorts %}
+					        {% if sorts.value == '%s-%s'|format(sort, order) %}
+                    <option value="{{ sorts.href }}" selected="selected">{{ sorts.text }}</option>
+					        {% else %} 
+				            <option value="{{ sorts.href }}">{{ sorts.text }}</option>	
+					        {% endif %}
+					      {% endfor %}
               </select>
               <button class="catalog__btn-filter" id="openFilter"> 
                 <svg width="22" height="22">
@@ -252,21 +258,32 @@
             </div>
             <div class="catalog__inner"> 
               {% for product in products %}
-			  <div class="card"> 
-                <div class="card__pic"><img src="{{ product.thumb }}" alt="{{ product.name }}"></div>
-                <div class="card__content">
-                  {% if product.special %}<div class="card__price"> <span class="card__price-new">{{ product.special }}</span><span class="card__price-old">{{ product.price }}</span></div><a class="card__descr" href="{{ product.href }}">{{ product.name }}</a>{% else %}
-				  <div class="card__price"> <span class="card__price-new">{{ product.price }}</span></div><a class="card__descr" href="{{ product.href }}">{{ product.name }}</a>{% endif %}
+			          <div class="card"> 
+                  <div class="card__pic">
+                    <img src="{{ product.thumb }}" alt="{{ product.name }}">
+                  </div>
+                  <div class="card__content">
+                    {% if product.special %}
+                      <div class="card__price">
+                        <span class="card__price-new">{{ product.special }}</span>
+                        <span class="card__price-old">{{ product.price }}</span>
+                      </div>
+                      <a class="card__descr" href="{{ product.href }}">{{ product.name }}</a>
+                    {% else %}
+				              <div class="card__price"> <span class="card__price-new">{{ product.price }}</span></div>
+                      <a class="card__descr" href="{{ product.href }}">{{ product.name }}</a>
+                    {% endif %}
+                  </div>
+                  <a href="{{ product.href }}"><button class="btn-default card__btn">Выбрать</button></a>
                 </div>
-                <a href="{{ product.href }}"><button class="btn-default card__btn">Выбрать</button></a>
-              </div>
-          {% endfor %}
+              {% endfor %}
             </div>
-            <ul class="catalog__pagination"> 
-              {{ pagination }}
-            </ul>
+            <ul class="catalog__pagination">{{ pagination }}</ul>
           </div>
         </div>
+    </div>
+  </section>
+{{ content_bottom }}
 {{ footer }} 
 
 

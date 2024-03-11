@@ -314,28 +314,28 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 
 
-	function openModelCharacter() {
-		const wrap = document.querySelector('.model-charact')
-		wrap.addEventListener('click', function (e) {
-			const items = document.querySelectorAll('.model-charact__content')
-			const target = e.target
-			console.log(target)
-			items.forEach(item => {
-				item.classList.remove('active')
-				item.closest('.model-charact__item').querySelector('.model-charact__head').classList.remove('active')
-			})
-			if (target.classList.contains('model-charact__text')) {
-				target.closest('.model-charact__item').querySelector('.model-charact__head').classList.toggle('active')
-			}
-			if (target.classList.contains('model-charact__text')) {
-				target.closest('.model-charact__item').querySelector('.model-charact__head').classList.toggle('active')
-			}
-			target.closest('.model-charact__item').querySelector('.model-charact__head').classList.toggle('active')
-		})
-	}
-	if (document.querySelector('.model-charact')) {
-		openModelCharacter()
-	}
+	// function openModelCharacter() {
+	// 	const wrap = document.querySelector('.model-charact')
+	// 	wrap.addEventListener('click', function (e) {
+	// 		const items = document.querySelectorAll('.model-charact__content')
+	// 		const target = e.target
+	// 		console.log(target)
+	// 		items.forEach(item => {
+	// 			item.classList.remove('active')
+	// 			item.closest('.model-charact__item').querySelector('.model-charact__head').classList.remove('active')
+	// 		})
+	// 		if (target.classList.contains('model-charact__text')) {
+	// 			target.closest('.model-charact__item').querySelector('.model-charact__head').classList.toggle('active')
+	// 		}
+	// 		if (target.classList.contains('model-charact__text')) {
+	// 			target.closest('.model-charact__item').querySelector('.model-charact__head').classList.toggle('active')
+	// 		}
+	// 		target.closest('.model-charact__item').querySelector('.model-charact__head').classList.toggle('active')
+	// 	})
+	// }
+	// if (document.querySelector('.model-charact')) {
+	// 	openModelCharacter()
+	// }
 
 	tippy(document.querySelectorAll('.tooltip'), {});
 

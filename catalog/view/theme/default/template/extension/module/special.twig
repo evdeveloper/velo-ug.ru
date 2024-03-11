@@ -1,31 +1,46 @@
 
 <script src="js/swiper-bundle.min.js"></script>
-<div class="container">
-<div class="popular"> 
-            <div class="popular__wrapper _container"> 
-              <div class="popular__head"> 
-                <h2 class="popupar__title title">Популярное</h2><a class="link-arrow" href="catalog.html">Смотреть больше
-                  <svg width="25" height="24">
-                    <use href="#arrow-icn"></use>
-                  </svg></a>
-              </div>
-              <div class="popular__items"> 
-                <div class="swiper swiper-popular">
-                  <div class="swiper-wrapper"> 
-				  {% for product in products %}
-                    <div class="swiper-slide"> 
-                      <div class="popular__item"> 
-                        <div class="popular__pic"><img src="{{ product.thumb }}" alt="{{ product.name }}"></div>
-                        <div class="popular__item-content">
-                          {% if product.special %}<div class="popular__price"> <span class="popular__price-new">{{ product.special }}</span><span class="popular__price-old">{{ product.price }}</span></div><a class="popular__descr" href="{{ product.href }}">{{ product.name }}</a>{% else %}
-						  <div class="popular__price"> <span class="popular__price-new">{{ product.price }}</span></div><a class="popular__descr" href="{{ product.href }}">{{ product.name }}</a>{% endif %}
+<section class="s-popular">
+  <div class="container">
+    <div class="popular">
+      <div class="popular__wrapper _container"> 
+        <div class="popular__head"> 
+          <h2 class="popupar__title title">Популярное</h2>
+          <a class="link-arrow" href="catalog.html">Смотреть больше
+            <svg width="25" height="24"><use href="#arrow-icn"></use></svg>
+          </a>
+        </div>
+        <div class="popular__items"> 
+          <div class="swiper swiper-popular">
+            <div class="swiper-wrapper"> 
+              {% for product in products %}
+                <div class="swiper-slide"> 
+                  <div class="popular__item"> 
+                    <div class="popular__pic"><img src="{{ product.thumb }}" alt="{{ product.name }}"></div>
+                    <div class="popular__item-content">
+                      {% if product.special %}
+                        <div class="popular__price">
+                          <span class="popular__price-new">{{ product.special }}</span>
+                          <span class="popular__price-old">{{ product.price }}</span>
                         </div>
-                       <a href="{{ product.href }}"><button class="btn-default popular__btn" >Выбрать</button></a>
-                      </div>
+                        <a class="popular__descr" href="{{ product.href }}">{{ product.name }}</a>
+                      {% else %}
+                        <div class="popular__price">
+                          <span class="popular__price-new">{{ product.price }}</span>
+                        </div>
+                        <a class="popular__descr" href="{{ product.href }}">{{ product.name }}</a>
+                      {% endif %}
                     </div>
-					{% endfor %}
+                    <a href="{{ product.href }}"><button class="btn-default popular__btn" >Выбрать</button></a>
                   </div>
                 </div>
-              </div>
+              {% endfor %}
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+        
