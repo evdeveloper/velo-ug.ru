@@ -1,4 +1,5 @@
 {{ header }}
+<main>
 <div id="product-search" class="container">
   <ul class="breadcrumb">
     {% for breadcrumb in breadcrumbs %}
@@ -159,9 +160,11 @@
       {% else %}
       <p>{{ text_empty }}</p>
       {% endif %}
-      {{ content_bottom }}</div>
+      </div>
     {{ column_right }}</div>
 </div>
+</main>
+{{ content_bottom }}
 <script type="text/javascript"><!--
 $('#button-search').bind('click', function() {
 	url = 'index.php?route=product/search';
